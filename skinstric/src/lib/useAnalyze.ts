@@ -25,7 +25,7 @@ export function useAnalyze() {
           throw new Error(`${json.error || "Analysis failed."}${detail}`);
         }
         saveAnalysis(json.data as Analysis);
-        router.push("/results");
+        router.push("/select");
       } catch (err) {
         console.error("analysis failed:", err);
         setError(err instanceof Error ? err.message : "Something went wrong.");

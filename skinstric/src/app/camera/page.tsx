@@ -20,7 +20,7 @@ export default function CameraPage() {
   const { analyze, busy, error } = useAnalyze();
 
   useEffect(() => {
-    if (user === null) router.replace("/intro");
+    if (user === null) router.replace("/testing");
   }, [user, router]);
 
   const stopCamera = useCallback(() => {
@@ -123,7 +123,7 @@ export default function CameraPage() {
             <button className="btn btn--ghost" onClick={() => setStatus("ask")}>
               Try again
             </button>
-            <Link href="/scan" className="btn">
+            <Link href="/result" className="btn">
               Upload a photo
             </Link>
           </div>
@@ -165,7 +165,7 @@ export default function CameraPage() {
       )}
 
       <div className="actions">
-        <Link href="/scan" className="btn btn--ghost">
+        <Link href="/result" className="btn btn--ghost">
           Back
         </Link>
       </div>

@@ -17,7 +17,7 @@ type CategoryKey = (typeof CATEGORIES)[number]["key"];
 const RADIUS = 90;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-export default function ResultsPage() {
+export default function SummaryPage() {
   const router = useRouter();
   const analysis = useAnalysis();
   const user = useUser();
@@ -26,7 +26,7 @@ export default function ResultsPage() {
   const [actual, setActual] = useState<Partial<Record<CategoryKey, string>>>({});
 
   useEffect(() => {
-    if (analysis === null) router.replace("/scan");
+    if (analysis === null) router.replace("/result");
   }, [analysis, router]);
 
   if (!analysis) {
@@ -43,9 +43,14 @@ export default function ResultsPage() {
 
   return (
     <main className="page results">
-      <div className="eyebrow">A.I. analysis</div>
-      <h1 className="title">Demographics{user ? ` for ${user.name}` : ""}</h1>
-      <p className="hint">Predicted race &amp; age. Click an option to set your actual answer.</p>
+      <div className="summary__head">
+        <h1 className="summary__h1">A.I. ANALYSIS</h1>
+        <h2 className="summary__h2">DEMOGRAPHICS</h2>
+        <h3 className="summary__h3">PREDICTED RACE &amp; AGE</h3>
+      </div>
+      <p className="hint">
+        {user ? `${user.name}, click` : "Click"} an option on the right to set your actual answer.
+      </p>
 
       <div className="results__grid">
         <div className="sidebar" role="tablist" aria-label="Category">
@@ -107,7 +112,7 @@ export default function ResultsPage() {
       </div>
 
       <div className="actions">
-        <Link href="/scan" className="btn btn--ghost">
+        <Link href="/select" className="btn btn--ghost">
           Back
         </Link>
         <Link href="/" className="btn">
